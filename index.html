@@ -14,6 +14,7 @@
   <style>
     body { font-family: Arial, sans-serif; margin: 20px; }
     img { max-height: 32px; }
+    th, td { text-align: center; }
   </style>
 </head>
 <body>
@@ -32,18 +33,24 @@
   </table>
 
   <script>
+    // Données incluses directement
+    const data = [
+      { Nom: "Cobblestone", Type: "Bloc", Obtention: "Craft ou Mine", Image: "https://upload.wikimedia.org/wikipedia/en/5/5c/Minecraft_Cobblestone.png" },
+      { Nom: "Diamond", Type: "Item", Obtention: "Mine", Image: "https://upload.wikimedia.org/wikipedia/en/4/4e/Diamond.png" },
+      { Nom: "Oak Wood", Type: "Bloc", Obtention: "Coupe d'arbre", Image: "https://upload.wikimedia.org/wikipedia/en/5/56/Wood_Plank.png" }
+      // tu peux ajouter toutes tes lignes ici
+    ];
+
     $(document).ready(function () {
       $('#skyblock').DataTable({
-        ajax: 'items.csv',
+        data: data,
         columns: [
           { data: 'Nom' },
           { data: 'Type' },
           { data: 'Obtention' },
           {
             data: 'Image',
-            render: function (data) {
-              return '<img src="' + data + '" alt="item">';
-            }
+            render: function(d) { return '<img src="'+d+'" alt="item">'; }
           }
         ],
         paging: true,
