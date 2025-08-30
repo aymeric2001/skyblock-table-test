@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Skyblock Items</title>
+
+  <!-- CSS DataTables -->
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
+
+  <!-- jQuery et DataTables -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+
+  <style>
+    body { font-family: Arial, sans-serif; margin: 20px; }
+    img { max-height: 32px; }
+  </style>
+</head>
+<body>
+  <h1>Tableau Skyblock</h1>
+  <p>Recherche, tri et filtres disponibles ci-dessous.</p>
+
+  <table id="skyblock" class="display" style="width:100%">
+    <thead>
+      <tr>
+        <th>Nom</th>
+        <th>Type</th>
+        <th>Obtention</th>
+        <th>Image</th>
+      </tr>
+    </thead>
+  </table>
+
+  <script>
+    $(document).ready(function () {
+      $('#skyblock').DataTable({
+        ajax: 'items.csv',
+        columns: [
+          { data: 'Nom' },
+          { data: 'Type' },
+          { data: 'Obtention' },
+          {
+            data: 'Image',
+            render: function (data) {
+              return '<img src="' + data + '" alt="item">';
+            }
+          }
+        ],
+        paging: true,
+        searching: true,
+        ordering: true
+      });
+    });
+  </script>
+</body>
+</html>
